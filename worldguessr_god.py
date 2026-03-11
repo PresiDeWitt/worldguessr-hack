@@ -253,8 +253,11 @@ class WorldGuessrGod:
         print(f"Estado de dibujo inicial: {res}")
 
     def process_queue(self):
+        """
+        Principal loop to check for coordinates in window.hack_coords or iframe src attributes.
+        """
         try:
-            # 1. Check window.__hack_coords (from API interceptor)
+            # Check window.__hack_coords (captured from fetch/websocket)
             coords = self.driver.execute_script(
                 """
                 var c = window.__hack_coords;
@@ -266,15 +269,14 @@ class WorldGuessrGod:
                 self.found_location(coords["lat"], coords["lng"])
                 return
 
-            # 2. Check IFRAMEs (Enhanced Regex Method)
+            # Check iframes for coordinates in URL params
             iframe_coords = self.driver.execute_script(
                 """
                 try {
-                    // Method A: ID 'streetview' (Most common)
+                    // ID 'streetview' is the main target for Google Maps iframes
                     var el = document.getElementById('streetview');
                     var srcs = [el ? el.src : ''];
 
-                    // Method B: All iframes
                     var iframes = document.getElementsByTagName('iframe');
                     for (var i = 0; i < iframes.length; i++) {
                         srcs.push(iframes[i].src);
