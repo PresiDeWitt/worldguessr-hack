@@ -15,9 +15,23 @@ Supports **Singleplayer**, **Multiplayer**, **Community Maps**, and **Private Ga
 
 1.  **Clone the repository**:
     ```bash
-    git clone https://github.com/YourUsername/worldguessr-god.git
-    cd worldguessr-god
+    git clone https://github.com/PresiDeWitt/worldguessr-hack.git
+    cd worldguessr-hack
     ```
+
+2.  **Install dependencies**:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3.  **Run the script**:
+    ```bash
+    python worldguessr_god.py
+    ```
+
+## Disclaimer
+
+This tool is for educational purposes only. Use it responsibly and at your own risk. The developer is not responsible for any consequences resulting from the use of this software.
 
 2.  **Create a virtual environment** (recommended):
     ```bash
