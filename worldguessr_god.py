@@ -7,20 +7,23 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 class WorldGuessrGod:
-    def __init__(self):
+    def __init__(self, debug=False):
         print("\n" + "=" * 50)
-        print(" SABUESO ACTIVADO")
+        print(" WORLDGUESSR GOD MODE - ACTIVATED")
         print("=" * 50 + "\n")
 
+        self.debug = debug
         options = Options()
         options.add_argument("--start-maximized")
+        # Keep window open after script finish
+        options.add_experimental_option("detach", True)
 
         try:
             self.driver = webdriver.Chrome(
                 service=Service(ChromeDriverManager().install()), options=options
             )
         except Exception as e:
-            print(f"Error fatal iniciando Chrome: {e}")
+            print(f"[-] [FATAL] Error starting Chrome: {e}")
             exit()
 
         self.last_coords = None
